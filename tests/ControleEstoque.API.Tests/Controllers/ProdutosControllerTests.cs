@@ -20,6 +20,33 @@ public class ProdutosControllerTests
         Assert.IsType<NotFoundObjectResult>(result);
     }
 
+
+    [Fact]
+    public async Task ObterTodos_QuandoExistemProdutos_DeveRetornarOkComLista()
+    {
+
+        // Arrange
+        var listProdutos = new List<ProdutoDto>
+        {
+            new ProdutoDto { Id = 1, Nome = "Teclado", Preco = 10.0m, QuantidadeEstoque = 5, FornecedorId = 1 },
+            new ProdutoDto { Id = 2, Nome = "Mouse", Preco = 20.0m, QuantidadeEstoque = 3, FornecedorId = 1 }
+        };
+
+        var produtoMock = new Mock<IProdutoService>();
+        produtoMock.Setup(x => x.ObterTodosAsync()).ReturnsAsync(listProdutos);
+        var controller = new ProdutosController(produtoMock.Object);
+
+        // Act
+        var result = await controller.ObterTodos();
+
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        var produtos = Assert.IsAssignableFrom<IEnumerable<ProdutoDto>>(okResult.Value);
+        Assert.Equal(2, produtos.Count());
+    }
+
+
+
     [Fact]
     public async Task Criar_ProdutoCriado_DeveRetornarCreatedAtAction()
     {

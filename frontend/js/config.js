@@ -3,7 +3,9 @@ const CANDIDATE_API_URLS = [
     'http://localhost:5132',
     'https://localhost:7190',
     'http://localhost:5000',
-    'https://localhost:5001'
+    'https://localhost:5001',
+    'https://controleestoqueapi20260730211552.azurewebsites.net'
+
 ];
 
 let API_BASE_URL = localStorage.getItem('api_base_url') || CANDIDATE_API_URLS[0];

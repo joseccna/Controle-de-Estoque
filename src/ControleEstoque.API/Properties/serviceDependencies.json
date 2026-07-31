@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "apis1": {
+      "type": "apis"
+    },
+    "storage1": {
+      "type": "storage",
+      "connectionId": "StorageConnection"
+    },
+    "storage2": {
+      "type": "storage",
+      "connectionId": "StorageConnection1"
+    }
+  }
+}
